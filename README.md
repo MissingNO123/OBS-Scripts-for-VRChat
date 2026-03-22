@@ -1,6 +1,8 @@
 # OBS Scripts for VRChat
 
-A collection of OBS Studio scripts that provide extra functionality and integration with VRChat. See the individual headings for details of each script.
+A collection of OBS Studio scripts that provide extra functionality and integration with VRChat. These can be added directly to OBS Studio via the Scripts menu and do not require running an external application.
+
+See the individual headings for details of each script.
 
 - [VRC Loading Screen Scene Switcher](#vrc-loading-screen-scene-switcher)
 - [OSC Control from Action Menu](#osc-control-from-action-menu)
