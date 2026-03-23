@@ -375,12 +375,12 @@ def script_properties():
     # Avatar Parameter Names
     S.obs_properties_add_text(props, "Label_1", "Parameters", S.OBS_TEXT_INFO )
 
-    S.obs_properties_add_text(props, "recording_param", "Recording Parameter", S.OBS_TEXT_DEFAULT)
-    S.obs_properties_add_text(props, "recording_paused_param", "Recording Paused Parameter", S.OBS_TEXT_DEFAULT)
-    S.obs_properties_add_text(props, "replay_buffer_param", "Replay Buffer Parameter", S.OBS_TEXT_DEFAULT)
-    S.obs_properties_add_text(props, "replay_buffer_save_param", "Replay Buffer Save Parameter", S.OBS_TEXT_DEFAULT)
-    S.obs_properties_add_text(props, "streaming_param", "Streaming Parameter", S.OBS_TEXT_DEFAULT)
-    S.obs_properties_add_text(props, "scene_param", "Scene Parameter Name", S.OBS_TEXT_DEFAULT)
+    S.obs_properties_add_text(props, "recording_param", "Recording", S.OBS_TEXT_DEFAULT)
+    S.obs_properties_add_text(props, "recording_paused_param", "Pause Recording", S.OBS_TEXT_DEFAULT)
+    S.obs_properties_add_text(props, "replay_buffer_param", "Replay Buffer", S.OBS_TEXT_DEFAULT)
+    S.obs_properties_add_text(props, "replay_buffer_save_param", "Save Replay Buffer", S.OBS_TEXT_DEFAULT)
+    S.obs_properties_add_text(props, "streaming_param", "Streaming", S.OBS_TEXT_DEFAULT)
+    S.obs_properties_add_text(props, "scene_param", "Scene Parameter", S.OBS_TEXT_DEFAULT)
 
     # Indexed Scene List
     S.obs_properties_add_text(props, "Label_2", "Scenes", S.OBS_TEXT_INFO )
