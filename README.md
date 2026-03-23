@@ -43,23 +43,29 @@ https://github.com/user-attachments/assets/74e36e11-0b14-4299-9628-157dfd953cda
 # OSC Control from Action Menu
 
 Reacts to avatar parameters changing and sends control commands to OBS. Meant to be used with the Action Menu, but can be triggered from anything on the avatar.
+The script will also sync the current status of recording/streaming/replay buffer and active scene back to VRChat so you can also check its state from the Action Menu.
 
 By default, it responds to the following parameters:
 
-| Parameter                | Action                     |
-|--------------------------|----------------------------|
-| OBSCtrl_Recording        | Start/Stop Recording       |
-| OBSCtrl_RecordingPaused  | Pause Current Recording    |
-| OBSCtrl_ReplayBuffer     | Start/Stop Replay Buffer   |
-| OBSCtrl_SaveReplayBuffer | Save Current Replay Buffer |
-| OBSCtrl_Streaming        | Start/Stop Streaming       |
+| Parameter                | Type | Action                        |
+|--------------------------|------|-------------------------------|
+| OBSCtrl_Recording        | Bool | Start/Stop Recording          |
+| OBSCtrl_RecordingPaused  | Bool | Pause Current Recording       |
+| OBSCtrl_ReplayBuffer     | Bool | Start/Stop Replay Buffer      |
+| OBSCtrl_SaveReplayBuffer | Bool | Save Current Replay Buffer    |
+| OBSCtrl_Streaming        | Bool | Start/Stop Streaming          |
+| OBSCtrl_Scene            | Int  | Switch to scene # from a List |
 
 ### [Download](https://raw.githubusercontent.com/MissingNO123/OBS-VRCLoad-Sceneswitcher/refs/heads/main/osc-radial.py) (Right-click > Save As)
 
 ### Usage
 0. Make sure OSC is enabled in VRChat!
 1. Set up your avatar with the required parameters.
-2. When the parameter's value changes, the corresponding action will be taken in OBS.
+2. In the script properties, set:
+	- Number of Indexed Scenes
+	- Scene Names for each index 
+3. When any configured parameter's value changes, the corresponding action will be taken in OBS.
+4. Set the Scene parameter to a number and it will switch to that numbered scene out of the list configured in the script settings window
 
 ### Demo
 (soon)
