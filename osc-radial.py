@@ -7,6 +7,7 @@ import obspython as S #type:ignore
 import time
 
 from vrchat_oscquery.threaded import vrc_osc
+import vrchat_oscquery.threaded as vrc_osc_threaded
 from vrchat_oscquery.common import vrc_client, dict_to_dispatcher
 
 from random import randint
@@ -60,12 +61,28 @@ def _build_dispatcher_map():
 def _start_osc_server():
     # print("Starting OSC server..." + f"(instance {instance})")
     global osc_server, dispatcher
+    _suppress_oscquery_http_access_logs()
     dispatcher = dict_to_dispatcher(_build_dispatcher_map())
     osc_server = vrc_osc("OBS OSC Param Receiver " + str(instance), dispatcher)
     time.sleep(1)
     while not osc_server.socket:
         # Wait for VRChat to connect first
         time.sleep(1)
+
+
+def _suppress_oscquery_http_access_logs():
+    """Silence HTTP access logging from vrchat_oscquery's internal HTTP server."""
+    handler_cls = vrc_osc_threaded.BaseHTTPRequestHandler
+
+    # Avoid patching repeatedly across script reloads.
+    if getattr(handler_cls, "_quiet_patched", False):
+        return
+
+    def _quiet_log_message(self, fmt, *args):
+        return
+
+    handler_cls.log_message = _quiet_log_message
+    handler_cls._quiet_patched = True
 
 
 # def _restart_osc_server_if_running():
@@ -142,6 +159,7 @@ def onOBSCtrlMessageReceived(address, value):
     elif address == replay_buffer_save_param:
         if value:
             S.obs_frontend_replay_buffer_save()
+
     elif address == scene_param:
         if isinstance(value, bool) or not isinstance(value, (int, float)):
             return
@@ -354,12 +372,18 @@ def script_unload():
 def script_properties():
     props = S.obs_properties_create()
 
+    # Avatar Parameter Names
+    S.obs_properties_add_text(props, "Label_1", "Parameters", S.OBS_TEXT_INFO )
+
     S.obs_properties_add_text(props, "recording_param", "Recording Parameter", S.OBS_TEXT_DEFAULT)
     S.obs_properties_add_text(props, "recording_paused_param", "Recording Paused Parameter", S.OBS_TEXT_DEFAULT)
     S.obs_properties_add_text(props, "replay_buffer_param", "Replay Buffer Parameter", S.OBS_TEXT_DEFAULT)
     S.obs_properties_add_text(props, "replay_buffer_save_param", "Replay Buffer Save Parameter", S.OBS_TEXT_DEFAULT)
     S.obs_properties_add_text(props, "streaming_param", "Streaming Parameter", S.OBS_TEXT_DEFAULT)
     S.obs_properties_add_text(props, "scene_param", "Scene Parameter Name", S.OBS_TEXT_DEFAULT)
+
+    # Indexed Scene List
+    S.obs_properties_add_text(props, "Label_2", "Scenes", S.OBS_TEXT_INFO )
 
     num_scenes_prop = S.obs_properties_add_int(
         props,
@@ -392,9 +416,9 @@ def script_properties():
 
 
 def script_description():
-    print("script_description" + str(instance))
     return """Control OBS using OSC messages sent from VRChat.
-    Configure the parameter names that VRChat will send for different OBS actions, and optionally configure up to 32 scene names to be indexed for quick switching from VRChat."""
+Configure the parameter names that VRChat will send for different OBS actions,
+and optionally configure up to 32 scene names to be indexed for quick switching from VRChat."""
 
 
 #endregion
