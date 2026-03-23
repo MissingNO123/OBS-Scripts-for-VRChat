@@ -16,17 +16,18 @@ Suports Windows and Linux (Proton) out of the box. -->
 - OBS Studio
 
 ## Installation
-1. Download this repository using the **Code -> Download  File** button, then unzip the files to somewhere on your PC.
+1. Download this repository using the **Code > Download  ZIP** button, then unzip the files to somewhere on your PC.
 1. Alternatively, right-click on the download button on this page for any individual script, and click "Save As".
 1. In OBS Studio, go to Tools > Scripts.
 1. Click the "+" button and add the `.py` files you just downloaded.
+1. Configure each script's settings from its properties panel.
 
 # VRC Loading Screen Scene Switcher
 
 Automatically switches to a scene when entering the loading screen in VRChat, then switches back when done. 
 The destination scenes can also be set to whatever you want, see demo below for an example. 
 
-### [Download](https://raw.githubusercontent.com/MissingNO123/OBS-VRCLoad-Sceneswitcher/refs/heads/main/vrcload-sceneswitcher.py) (Right-click > Save As)
+### [Download Script](https://raw.githubusercontent.com/MissingNO123/OBS-VRCLoad-Sceneswitcher/refs/heads/main/vrcload-sceneswitcher.py) (Right-click > Save As)
 
 ### Usage
 0. Make sure Logging is enabled in VRChat!
@@ -56,11 +57,12 @@ By default, it responds to the following parameters:
 | OBSCtrl_Streaming        | Bool | Start/Stop Streaming          |
 | OBSCtrl_Scene            | Int  | Switch to scene # from a List |
 
-### [Download](https://raw.githubusercontent.com/MissingNO123/OBS-VRCLoad-Sceneswitcher/refs/heads/main/osc-radial.py) (Right-click > Save As)
+### [Download Script](https://raw.githubusercontent.com/MissingNO123/OBS-VRCLoad-Sceneswitcher/refs/heads/main/osc-radial.py) (Right-click > Save As)
+### [Download Modular Avatar Prefab](https://github.com/MissingNO123/OBS-Scripts-for-VRChat/raw/refs/heads/main/OBS%20Control%20Menu%20-%20MODULAR%20AVATAR.unitypackage) (Right-click > Save As)
 
 ### Usage
 0. Make sure OSC is enabled in VRChat!
-1. Set up your avatar with the required parameters.
+1. Set up your avatar with the required parameters (or use the provided MA prefab)
 2. In the script properties, set:
 	- Number of Indexed Scenes
 	- Scene Names for each index 
